@@ -2,33 +2,28 @@
 var express = require('express'),
 app = express(),
 bodyParser = require('body-parser'),
-_ = require("underscore"),
-mongoose = require('mongoose');
+_ = require("underscore");
 
 // tell app to use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: true}));
 
-mongoose.connect('mongodb://localhost/microBlog');
-var Post = require('./models/postModel');
-
 //connecting the css/js to the server.js
-app.use(express.static(__dirname + '/public/styles'));
-app.use(express.static(__dirname + '/public/scripts'));
+app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.json())
-
-// var posts = [
-//  {id: 1, title: "madrid, spain", description: "this restaurant was amazing! great vegetarian choices."},
-//  {id:2, title: "lisbon, portugal", description: "great meal to start off our foodventures! never knew what sweet potatoes could be!"},
-//  {id: 3, title: "florence, italy", description: "lovedd risotto! can't find it anywhere but italy!"}
-//  ];
+var mongoose = require('mongoose');
+//connecting the other file (postModel.js)
+var Post = require('./models/postModel');
+//connect to db
+mongoose.connect('mongodb://localhost/microBlog');
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/views/index.html');
 });
 
+//the below are API routes
+
 //this is finding all the posts in the server
-app.get('/api/posts', function (req, res) {
+app.get('/posts', function (req, res) {
   Post.find(function (err, posts) {
     res.json(posts);
   });
@@ -36,7 +31,7 @@ app.get('/api/posts', function (req, res) {
 
 //new is creating new instances of this object
 //save will actually save it into the database
-app.post('/api/posts', function (req, res) {
+app.post('/posts', function (req, res) {
   var newPost = new Post ({
     title: req.body.title,
     description: req.body.description
@@ -47,7 +42,7 @@ app.post('/api/posts', function (req, res) {
 });
 
 //updated the instance of the id of the object
-app.put('/api/posts/:id', function (req, res) {
+app.put('/posts/:id', function (req, res) {
   var targetId = req.params.id;
   Post.findOne({_id: targetId}, function (err, foundPost) {
     foundPost.title = req.body.title;
@@ -60,7 +55,7 @@ app.put('/api/posts/:id', function (req, res) {
 });
 
 // delete the post
-app.delete('/api/posts/:id', function (req, res) {
+app.delete('/posts/:id', function (req, res) {
   var targetId = req.params.id;
   Post.findOneAndRemove({_id: targetId}, function (err, deletedPost) {
     res.json(deletedPost);
