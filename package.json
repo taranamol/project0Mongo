@@ -1,0 +1,19 @@
+{
+  "name": "project01",
+  "version": "1.0.0",
+  "description": "this is a basic app where people can post short comments about restaurants on their foodventures!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "chai": "^3.0.0",
+    "express": "^4.13.1",
+    "mocha": "^2.2.5",
+    "mongoose": "^4.0.7",
+    "underscore": "^1.8.3"
+  }
+}

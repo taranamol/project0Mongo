@@ -1,0 +1,33 @@
+#headerCarousel {
+  background-color: #F6FAFA;
+}
+
+#form {
+  background-color: #0FBABB;
+}
+
+#backgroundForm {
+  background-color: #0FBABB;
+}
+
+#backgroundPost {
+  background-color: #F6FAFA;
+  color: #FF2D00;
+}
+
+.carousel-inner img {
+  width: 1000px; 
+  height: auto;
+}
+
+h1 {
+  font-family: 'Lucida Grande';
+  font-size: 40px;
+  font-style: normal;
+}
+
+h2 {
+  font-family: 'Lucida Grande';
+  font-size: 38px;
+  font-style: normal;
+}

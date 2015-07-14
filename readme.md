@@ -1,0 +1,1 @@
+this is a basic app where people can post short comments about restaurants on their foodventures!
